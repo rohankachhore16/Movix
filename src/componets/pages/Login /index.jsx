@@ -43,15 +43,15 @@ const Login = () => {
           }}
           onSubmit={(values) => {
             console.log(values, "____________________________");
-            dispath(userLoginAsyncThunk()).unwrap().then((res)=>{
+            dispath(userLoginAsyncThunk(values)).unwrap().then((res)=>{
               return(
-              console.log(res))
+              console.log(res)
+              )
             })
             .catch((err)=>{
               return(
-                console.log(err)
+                console.log(err,"____________")
               )
-              
             })
           }}
         >
