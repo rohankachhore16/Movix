@@ -1,5 +1,5 @@
 export  const ASYNC_ROUTES={
-LOGIN:"/auth/login",
+LOGIN:"/login",
 HOME:"/home",
 ABOUT:"/about",
 };

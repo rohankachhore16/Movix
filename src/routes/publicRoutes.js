@@ -1,4 +1,4 @@
-import Login from "../componets/pages/Login "
+import Login from "../componets/pages/login ";
 import LoginLayout from "../layout/loginLayout"
 import { ROUTE_DEFINATION } from "../utils/constant/routeConstant"
  const PUBLIC_ROUTES={
@@ -6,7 +6,6 @@ import { ROUTE_DEFINATION } from "../utils/constant/routeConstant"
   children:[
     {
       path:ROUTE_DEFINATION.LOGIN,
-      title: ROUTE_DEFINATION.title,
       element:<Login/>
     }
   ]

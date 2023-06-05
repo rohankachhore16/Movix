@@ -5,7 +5,7 @@ export function userLoginService(data) {
   return new Promise((resolve, reject) => {
     let config = {
       url: SERVICE_ROUTES.LOGIN,
-      method: METHODS.PUT,
+      method: METHODS.POST,
       data,
     };
     Axios.request(config)

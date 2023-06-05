@@ -9,10 +9,13 @@ const initialState = {
   userLoignStatus: null,
 };
 
-export const AuthSlice = createSlice({
+export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    // addToken:(state,action)=>{
+    //   state.token = action?.payload
+    // },
     removeToken: (state, action) => {
       state.token = null;
       state.user = null;
@@ -23,14 +26,15 @@ export const AuthSlice = createSlice({
       state.userLoignStatus = THUNK_STATUS.LOADING;
     });
     builder.addCase(userLoginAsyncThunk.fulfilled, (state, action) => {
+      // console.log(action.payload.data.access_token,"_________________")
       state.userLoignStatus = THUNK_STATUS.SUCCESS;
-      state.token = action?.payload?.data;
+      state.token = action?.payload?.data?.access_token
     });
       builder.addCase(userLoginAsyncThunk.rejected, (state, action) => {
         state.userLoignStatus = THUNK_STATUS.FAILED;
       });
   },
 });
-export const { removeToken } = AuthSlice.actions;
+export const { removeToken } = authSlice.actions;
 export const authState = (state) => state.authState;
-export default AuthSlice.reducer;
+export default authSlice.reducer;

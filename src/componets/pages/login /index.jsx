@@ -17,10 +17,11 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import BackGround from "../../../assets/images/back2.jpg";
 import { Formik } from "formik";
 import { useDispatch } from "react-redux";
+import { addToken } from "../../../redux/slices/authSlice";
 import { userLoginAsyncThunk } from "../../../redux/asyncThunk/authAsyncThunk";
 
 const Login = () => {
-  const dispath= useDispatch()
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -42,16 +43,12 @@ const Login = () => {
             password: "",
           }}
           onSubmit={(values) => {
-            console.log(values, "____________________________");
-            dispath(userLoginAsyncThunk()).unwrap().then((res)=>{
-              return(
-              console.log(res))
-            })
-            .catch((err)=>{
-              return(
-                console.log(err)
-              )
-              
+            // console.log(values, "____________________________");
+            // dispatch(addToken(values.email))
+            dispatch(userLoginAsyncThunk(values)).unwrap().then((res)=>{
+              console.log(res,"login api response")
+            }).cath((err)=>{
+              console.log(err,"___________________")
             })
           }}
         >
