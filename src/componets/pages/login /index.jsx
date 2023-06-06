@@ -19,9 +19,12 @@ import { Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { addToken } from "../../../redux/slices/authSlice";
 import { userLoginAsyncThunk } from "../../../redux/asyncThunk/authAsyncThunk";
+import { useNavigate } from "react-router-dom";
+import { ROUTE_DEFINATION } from "../../../utils/constant/routeConstant";
 
 const Login = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   return (
     <>
@@ -142,7 +145,7 @@ const Login = () => {
                         </Link>
                       </Grid>
                       <Grid item>
-                        <Link href="#" variant="body2">
+                        <Link href={ROUTE_DEFINATION.SIGNUP} variant="body2">
                           {"Don't have an account? Sign Up"}
                         </Link>
                       </Grid>
