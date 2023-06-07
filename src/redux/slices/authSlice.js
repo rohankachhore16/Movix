@@ -6,7 +6,10 @@ const initialState = {
   user: null,
   token: null,
   data: null,
-  userLoignStatus: null,
+  status: {
+    userLoginStatus:null,
+    userCreateStatus:null,
+  },
 };
 
 export const authSlice = createSlice({
@@ -23,16 +26,19 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(userLoginAsyncThunk.pending, (state, action) => {
-      state.userLoignStatus = THUNK_STATUS.LOADING;
+      state.userLoginStatus = THUNK_STATUS.LOADING;
     });
     builder.addCase(userLoginAsyncThunk.fulfilled, (state, action) => {
       // console.log(action.payload.data.access_token,"_________________")
-      state.userLoignStatus = THUNK_STATUS.SUCCESS;
+      state.userLoginStatus = THUNK_STATUS.SUCCESS;
       state.token = action?.payload?.data?.access_token
     });
       builder.addCase(userLoginAsyncThunk.rejected, (state, action) => {
-        state.userLoignStatus = THUNK_STATUS.FAILED;
+        state.userLoginStatus = THUNK_STATUS.FAILED;
       });
+
+
+      //crat
   },
 });
 export const { removeToken } = authSlice.actions;

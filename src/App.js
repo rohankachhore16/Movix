@@ -3,7 +3,7 @@ import "./App.css";
 import Routes from "./routes";
 import Login from "./componets/pages/login ";
 import { useSelector } from "react-redux";
-
+import {Toaster} from "react-hot-toast"
 const RoutesComponent = ({LoggedIn})=>{
 if(LoggedIn){
   return <Routes isLoggedIn={true}/>
@@ -19,6 +19,8 @@ function App() {
 <Router>
 <RoutesComponent LoggedIn={token}/>
 </Router>
+<Toaster />
+
     </>
   );
 }

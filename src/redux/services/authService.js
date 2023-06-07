@@ -17,3 +17,20 @@ export function userLoginService(data) {
       });
   });
 }
+
+export function crateUserService(data) {
+  return new Promise((resolve, reject) => {
+    let config = {
+      url: SERVICE_ROUTES.USER,
+      method: METHODS.POST,
+      data,
+    };
+    Axios.request(config)
+        .then((res) => {
+          return resolve(res);
+        })
+        .catch((err) => {
+          return reject(err);
+        });
+  });
+}
