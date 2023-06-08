@@ -1,90 +1,93 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { removeToken } from '../../../redux/slices/authSlice';
+import { ChevronLeft, Inbox, Mail } from "@mui/icons-material";
+import {
+  Button,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  styled,
+} from "@mui/material";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { removeToken } from "../../../redux/slices/authSlice";
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-    boxSizing: 'border-box',
-    ...(open && {
-      ...openedMixin(theme),
-      '& .MuiDrawer-paper': openedMixin(theme),
-    }),
-    ...(!open && {
-      ...closedMixin(theme),
-      '& .MuiDrawer-paper': closedMixin(theme),
-    }),
-  }),
-);
+const drawerWidth = 240;
 
-const DrawerTool = () => {
-  const dispatch = useDispatch();
+const DrawerTool = ({ open, setOpen }) => {
+  const dispatch=useDispatch()
+
+  const DrawerHeader = styled("div")(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(0, 1),
+    ...theme.mixins.toolbar,
+    justifyContent: "flex-end",
+  }));
   const handleLogout=()=>{
     dispatch(removeToken())
   }
   return (
     <>
-         <Drawer variant="permanent" open={open}>
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+
+          '& .MuiDrawer-paper': {
+            ...(open&&{
+              width: drawerWidth,
+              boxSizing: 'border-box',
+            }),
+            ...(!open&&{
+              width: "60px",
+              visibility: "visible!important",
+              transform:"none!important",
+              overflow:"hidden"
+              // boxSizing: 'border-box',
+            })
+          },
+        }}
+        variant="persistent"
+        anchor="left"
+        open={open}
+      >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
+          {/* h1 */}
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <Inbox /> : <Mail />}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={text} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+          {["All mail", "Trash", "Spam"].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <Inbox /> : <Mail />}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={text} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
+        <Button onClick={handleLogout} variant="contained"> LogOut</Button>
       </Drawer>
     </>
-  )
-}
+  );
+};
 
-export default DrawerTool
+export default DrawerTool;

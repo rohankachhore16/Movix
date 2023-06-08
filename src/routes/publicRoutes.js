@@ -1,4 +1,4 @@
-import Login from "../componets/pages/login ";
+import Login from "../componets/pages/login";
 import SignUp from "../componets/pages/signUp";
 import LoginLayout from "../layout/loginLayout"
 import { ROUTE_DEFINATION } from "../utils/constant/routeConstant"
