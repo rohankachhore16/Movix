@@ -48,14 +48,13 @@ const Login = () => {
             password: "",
           }}
           onSubmit={(values) => {
-            // console.log(values, "____________________________");
-            // dispatch(addToken(values.email))
+
             dispatch(userLoginAsyncThunk(values)).unwrap().then((res) => {
               toast.success('Successfully toasted!')
 
             }).catch((err) => {
               toast.error(`${err.response.data.message}`)
-              console.log('ee',err.response.data.message);
+              console.log('ee', err.response.data.message);
 
             })
           }}
