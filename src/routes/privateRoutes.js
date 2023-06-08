@@ -1,5 +1,6 @@
-import About from "../componets/pages/About";
-import Home from "../componets/pages/Home";
+
+import About from "../componets/pages/about";
+import Home from "../componets/pages/home";
 import MainLayout from "../layout/mainLayout";
 import { ROUTE_DEFINATION } from "../utils/constant/routeConstant";
 
@@ -11,6 +12,7 @@ import { ROUTE_DEFINATION } from "../utils/constant/routeConstant";
       title:ROUTE_DEFINATION.BASE,
       element:<Home/>
     },
+
     {
       path: ROUTE_DEFINATION.ABOUT,
       title:ROUTE_DEFINATION.ABOUT,

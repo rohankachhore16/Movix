@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+
 import {
   Avatar,
   Box,
@@ -17,10 +18,15 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import BackGround from "../../../assets/images/back2.jpg";
 import { Formik } from "formik";
 import { useDispatch } from "react-redux";
+import { addToken } from "../../../redux/slices/authSlice";
 import { userLoginAsyncThunk } from "../../../redux/asyncThunk/authAsyncThunk";
+import { useNavigate } from "react-router-dom";
+import { ROUTE_DEFINATION } from "../../../utils/constant/routeConstant";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
-  const dispath= useDispatch()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   return (
     <>
@@ -31,7 +37,7 @@ const Login = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          overflow:"hidden"
+          overflow: "hidden"
         }}
       >
         <CssBaseline />
@@ -42,16 +48,14 @@ const Login = () => {
             password: "",
           }}
           onSubmit={(values) => {
-            console.log(values, "____________________________");
-            dispath(userLoginAsyncThunk(values)).unwrap().then((res)=>{
-              return(
-              console.log(res)
-              )
-            })
-            .catch((err)=>{
-              return(
-                console.log(err,"____________")
-              )
+
+            dispatch(userLoginAsyncThunk(values)).unwrap().then((res) => {
+              toast.success('Successfully toasted!')
+
+            }).catch((err) => {
+              toast.error(`${err.response.data.message}`)
+              console.log('ee', err.response.data.message);
+
             })
           }}
         >
@@ -95,7 +99,7 @@ const Login = () => {
                     Sign in
                   </Typography>
                   <Box
-                   
+
                     sx={{ mt: 1 }}
                   >
                     <TextField
@@ -110,8 +114,8 @@ const Login = () => {
                       name="email"
                       onBlur={handleBlur}
 
-                      // autoComplete="email"
-                      // autoFocus
+                    // autoComplete="email"
+                    // autoFocus
                     />
                     <TextField
                       margin="normal"
@@ -145,7 +149,7 @@ const Login = () => {
                         </Link>
                       </Grid>
                       <Grid item>
-                        <Link href="#" variant="body2">
+                        <Link href={ROUTE_DEFINATION.SIGNUP} variant="body2">
                           {"Don't have an account? Sign Up"}
                         </Link>
                       </Grid>

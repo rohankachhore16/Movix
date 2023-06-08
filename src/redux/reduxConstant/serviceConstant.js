@@ -1,5 +1,6 @@
 export const SERVICE_ROUTES={
-  LOGIN:"/",
+  LOGIN:"https://api.escuelajs.co/api/v1/auth/login",
+  USER:"https://api.escuelajs.co/api/v1/users/",
 }
 
 export const METHODS={
