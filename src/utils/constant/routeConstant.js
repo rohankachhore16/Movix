@@ -1,17 +1,19 @@
-export const ROUTE_NAME={
-  BASE:"/",
-  // LOGIN:"/",
-  HOME:"/",
-  SIGNUP:"/signup",
-  ABOUT:"/about"
-}
+export const ROUTE_NAME = {
+  BASE: "/",
+  HOME: "/",
+  SIGNUP: "/signup",
+  ABOUT: "/about",
+  CONTACT: "/contact",
+  SERVICES: "/services",
+  PROFILE: "/profile",
+};
 
-
-export const ROUTE_DEFINATION={
-BASE:ROUTE_NAME.HOME,
-// LOGIN:ROUTE_NAME.LOGIN,
-HOME:ROUTE_NAME.HOME,
-ABOUT:ROUTE_NAME.ABOUT,
-SIGNUP:ROUTE_NAME.SIGNUP
-
-}
+export const ROUTE_DEFINATION = {
+  BASE: ROUTE_NAME.HOME,
+  HOME: ROUTE_NAME.HOME,
+  ABOUT: ROUTE_NAME.ABOUT,
+  SIGNUP: ROUTE_NAME.SIGNUP,
+  CONTACT: ROUTE_NAME.CONTACT,
+  SERVICES: ROUTE_NAME.SERVICES,
+  PROFILE: ROUTE_NAME.PROFILE,
+};

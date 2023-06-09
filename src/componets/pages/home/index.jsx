@@ -8,7 +8,7 @@ const Home = () => {
 
   const [page, setPage] = useState(1)
   const [product, setProduct] = useState([])
-  console.log(product,"stateproduct")
+  console.log(product, "stateproduct")
   // const product= useSelector((state)=>state?.product?.data)
 
   // console.log(product,"_____________")
@@ -16,19 +16,17 @@ const Home = () => {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {  
-
-    dispatch(getProductAsyncThunk()).unwrap().then((res) => {
-      console.log(res,"product details")
-      return setProduct(res.data)
+  useEffect(() => {
+    dispatch(getProductAsyncThunk(page)).unwrap().then((res) => {
+      console.log(res, "product details")
+      setProduct(res.data)
     }).catch((err) => {
       console.log(err, "______________")
     })
-  }, [])
-  console.log(product,"_____________")
-  const handlePageChange = (event, value) => {
-    setPage(value)
-  }
+  }, [page])
+  // const handlePageChange = (event, value) => {
+  //   setPage(value)
+  // }
   return (
     <>
       <Box>
@@ -38,30 +36,18 @@ const Home = () => {
         <Typography variant="h5"> Product Detils {page}</Typography>
 
         <Grid container p={3}>
-          {product?.map((item)=>{
-            console.log(item,"here is the item")
+          {product?.map((item) => {
             return (
               <Grid item sm={4} padding={3}>
-              <ProductCard key={item.id} images={item.category.image} title={item.title} />
-              
+                <ProductCard key={item.id} images={item.category.image} title={item.title} />
+
               </Grid>
 
             )
           })}
-          </Grid>
-{/*       
-          <Grid item sm={4}>
-            hello
-          </Grid>
-          <Grid item sm={4}>
-            hello
-          </Grid>
-        </Grid> */}
+        </Grid>
 
-        {/* {product?.map((item) => {
-          return <ProductCard />
-        })} */}
-        <Pagination sx={{ display: "flex", justifyContent: "center" }} count={10} onChange={handlePageChange} page={page} color="secondary" />
+        <Pagination sx={{ display: "flex", justifyContent: "center" }} count={20} onChange={(e, value) => setPage(value)} color="secondary" />
 
       </Box>
     </>

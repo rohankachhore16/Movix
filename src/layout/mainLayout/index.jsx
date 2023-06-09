@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import AppbarTool from "./Appbar";
 import DrawerTool from "./Drawer";
 import { Outlet } from "react-router-dom";
@@ -17,10 +17,13 @@ const MainLayout = () => {
     justifyContent: "flex-end",
   }));
 
+  useEffect(()=>{
+
+  },[])
   const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
     ({ theme, open }) => ({
       flexGrow: 1,
-      padding: theme.spacing(3),
+      // padding: theme.spacing(3),
       transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -42,17 +45,17 @@ const MainLayout = () => {
     })
   );
 
+
   return (
     <>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppbarTool open={open} setOpen={setOpen} />
         <DrawerTool open={open} setOpen={setOpen} />
-        <Main open={open}>
-          <DrawerHeader />
-
-          <Outlet />
-        </Main>
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <DrawerHeader />
+        <Outlet/>
+        </Box>
       </Box>
     </>
   );
