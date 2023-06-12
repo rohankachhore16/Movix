@@ -2,10 +2,16 @@ export const ROUTE_NAME = {
   BASE: "/",
   HOME: "/",
   SIGNUP: "/signup",
+  PROFILE: "/profile",
+
+  // user routes
   ABOUT: "/about",
   CONTACT: "/contact",
   SERVICES: "/services",
-  PROFILE: "/profile",
+
+  // admin rotes
+  CATEOGRIES_TOTAL: "/cateogries-total",
+  CATEOGRIES_REQUEST: "/cateogries-request",
 };
 
 export const ROUTE_DEFINATION = {
@@ -16,4 +22,9 @@ export const ROUTE_DEFINATION = {
   CONTACT: ROUTE_NAME.CONTACT,
   SERVICES: ROUTE_NAME.SERVICES,
   PROFILE: ROUTE_NAME.PROFILE,
+  CATEOGRIES_TOTAL:ROUTE_NAME.CATEOGRIES_TOTAL,
+  CATEOGRIES_REQUEST:ROUTE_NAME.CATEOGRIES_REQUEST,
+
+
+
 };

@@ -4,7 +4,10 @@ export const ASYNC_ROUTES = {
   ABOUT: "/about",
   USER: "/user",
   PRODUCT: "/product",
-  PROFILE:"/profile"
+  PROFILE: "/profile",
+  CATEGORIES: "/categories",
+  CARD_DELETE: "/categories_Delete",
+
 };
 
 export const THUNK_STATUS = {

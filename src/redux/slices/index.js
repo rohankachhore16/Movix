@@ -7,4 +7,5 @@ export default combineReducers({
   user: AuthSlice,
   product: productSlice,
   profile: profileSlice,
+  // categories:
 });

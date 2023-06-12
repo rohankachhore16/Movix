@@ -22,12 +22,12 @@ import {
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { removeToken } from "../../../redux/slices/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ItemList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const mainListItems = [
+  const CustomerList = [
     {
       id: "1",
       icon: <Dashboard />,
@@ -58,9 +58,41 @@ const ItemList = () => {
     },
   ];
 
+  const AdminList = [
+    {
+      id: "1",
+      icon: <Dashboard />,
+      value: "Dashboard",
+      path: ROUTE_DEFINATION.BASE,
+    },
+
+    {
+      id: "2",
+
+      icon: <Info />,
+      value: "Cateogries request",
+      path: ROUTE_DEFINATION.CATEOGRIES_REQUEST,
+    },
+    {
+      id: "3",
+
+      icon: <ContactPage />,
+      value: "Cateogries Total",
+      path: ROUTE_DEFINATION.CATEOGRIES_TOTAL,
+    },
+
+   
+  ];
+
+
   const handleLogout = () => {
     dispatch(removeToken())
   }
+
+  const user = useSelector((state)=> state?.profile.data)
+const sidebarItems= user?.role ==="ADMIN"? AdminList: CustomerList
+const mainListItems=[...sidebarItems]
+console.log(mainListItems,"_________________mainListItems")
   return (
     <>
       <Stack display="flex" justifyContent="space-between" height="100%">

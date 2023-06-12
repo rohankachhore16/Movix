@@ -7,12 +7,11 @@ const Profile = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(profileAsyncThunk()).unwrap().then((res)=>{
-      // console.log(res,"________________response")
     }).catch((err)=>{
       console.log(err)
     })
   }, [])
-
+  
   return (
     <>
 
