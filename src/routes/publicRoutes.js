@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import Login from "../componets/pages/login";
 import SignUp from "../componets/pages/signUp";
 import LoginLayout from "../layout/loginLayout"
@@ -21,7 +22,11 @@ import { ROUTE_DEFINATION } from "../utils/constant/routeConstant"
     {
       path:ROUTE_DEFINATION.SIGNUP,
       element:<SignUp/>
-    }
+    },     {
+      path: "*",
+      title: "",
+      element: <Navigate to={ROUTE_DEFINATION.BASE} />,
+  },
   ]
 }
 

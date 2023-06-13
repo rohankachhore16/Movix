@@ -78,7 +78,7 @@ const DrawerTool = ({ open, setOpen }) => {
         <Divider />
 
         <List sx={{height:"100%"}}>
-          <ItemList />
+          <ItemList {...{open,setOpen}} />
 
         </List>
         {/* <Button onClick={handleLogout} variant="contained"> LogOut</Button> */}

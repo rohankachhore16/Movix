@@ -3,6 +3,7 @@ import { ROUTE_DEFINATION } from "../../../utils/constant/routeConstant";
 import {
   Box,
   Divider,
+  List,
   ListItem,
   ListItemButton,
   ListItemIcon,
@@ -20,11 +21,11 @@ import {
   Mail,
   MiscellaneousServices,
 } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { removeToken } from "../../../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const ItemList = () => {
+const ItemList = ({open}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
   const CustomerList = [
@@ -85,9 +86,9 @@ const ItemList = () => {
   ];
 
 
-  // const handleLogout = () => {
-  //   dispatch(removeToken())
-  // }
+  const handleLogout = () => {
+    dispatch(removeToken())
+  } 
 
   const user = useSelector((state)=> state?.profile?.data)
   const roleLogin= user?.role?.toUpperCase();  
@@ -111,14 +112,58 @@ const mainListItems=[...sidebarItems]
         </Box>
         <Box >
           <Divider />
-          {["Profile", "Logout"].map((item, index) => {
+
+          <List>
+            <ListItem k sx={{ display: 'block',paddingLeft:"0px" }} onClick={()=> navigate(ROUTE_DEFINATION.PROFILE)}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  // px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,  
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+     <AccountBox/>
+                </ListItemIcon>
+                <ListItemText primary="Profile" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+            <ListItem k sx={{ display: 'block',paddingLeft:"0px" }} onClick={handleLogout} >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  // px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+     <East/>
+                </ListItemIcon>
+                <ListItemText primary="Log out" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+        </List>
+          {/* {["Profile", "Logout"].map((item, index) => {
             return (
 
               <ListItem key={index} sx={{ paddingLeft: "0px" }}>
                 <ListItemButton
                   onClick={() => {
 
-                    if (index !== 0) {
+                    if (index  !== 1) {
+                      console.log(index,"_________index")
                       navigate(ROUTE_DEFINATION.PROFILE)
                     }
                     else {
@@ -139,7 +184,7 @@ const mainListItems=[...sidebarItems]
               </ListItem>
             )
           }
-          )}
+          )} */}
         </Box>
       </Stack>
     </>
