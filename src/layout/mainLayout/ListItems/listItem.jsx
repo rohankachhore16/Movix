@@ -85,14 +85,14 @@ const ItemList = () => {
   ];
 
 
-  const handleLogout = () => {
-    dispatch(removeToken())
-  }
+  // const handleLogout = () => {
+  //   dispatch(removeToken())
+  // }
 
-  const user = useSelector((state)=> state?.profile.data)
-const sidebarItems= user?.role ==="ADMIN"? AdminList: CustomerList
+  const user = useSelector((state)=> state?.profile?.data)
+  const roleLogin= user?.role?.toUpperCase();  
+const sidebarItems= roleLogin ==="ADMIN" ? AdminList: CustomerList
 const mainListItems=[...sidebarItems]
-console.log(mainListItems,"_________________mainListItems")
   return (
     <>
       <Stack display="flex" justifyContent="space-between" height="100%">
@@ -118,7 +118,7 @@ console.log(mainListItems,"_________________mainListItems")
                 <ListItemButton
                   onClick={() => {
 
-                    if (index === 0) {
+                    if (index !== 0) {
                       navigate(ROUTE_DEFINATION.PROFILE)
                     }
                     else {

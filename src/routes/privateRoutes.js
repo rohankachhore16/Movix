@@ -102,7 +102,7 @@ const roleBaseRoutes = (role)=>{
     ]
   }
   switch(role){
-    case "customer":
+    case "CUSTOMER":
       PRIVATE_ROUTES.children.push(
         aboutRoutes,
         ContractRoutes,

@@ -23,6 +23,7 @@ import { userLoginAsyncThunk } from "../../../redux/asyncThunk/authAsyncThunk";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_DEFINATION } from "../../../utils/constant/routeConstant";
 import toast, { Toaster } from 'react-hot-toast';
+import { profileAsyncThunk } from "../../../redux/asyncThunk/getProfileAsyncThunk";
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -52,6 +53,9 @@ const Login = () => {
           onSubmit={(values) => {
 
             dispatch(userLoginAsyncThunk(values)).unwrap().then((res) => {
+             dispatch(profileAsyncThunk()).unwrap().then((res)=>{
+              console.log(res,"_______________")
+             })
               toast.success('Successfully toasted!')
 
             }).catch((err) => {

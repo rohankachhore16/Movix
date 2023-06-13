@@ -33,7 +33,6 @@ export const productSlice = createSlice({
       state.status.categoreisStatus = THUNK_STATUS.LOADING;
     });
     builder.addCase(getCatogriesAsyncThunk.fulfilled, (state, action) => {
-// console.log(action,"actions")
       state.status.categoreisStatus = THUNK_STATUS.SUCCESS;
       state.categoreis= action?.payload?.data
     });

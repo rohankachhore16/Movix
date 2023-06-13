@@ -8,7 +8,6 @@ const Categories = ({ filter, setFilter }) => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getCatogriesAsyncThunk()).unwrap().then((res) => {
-      // console.log(res, "__________catedroeis res")
       setcategories(res.data)
     })
 
@@ -17,7 +16,6 @@ const Categories = ({ filter, setFilter }) => {
     e.preventDefault();
     setFilter(e.target.value)
   }
-  // console.log(filter,"__________filter")
 
   return (
     <>
